@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
       console.log("sending wol")
     wol("18:C0:4D:97:70:60", (from = "10.100.10.255")).then(() => {
       res.send("wol sent!");
-    });
+    }).catch((error)=>console.log(error));
   }
 });
 app.listen(port, () => {
