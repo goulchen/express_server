@@ -8,14 +8,11 @@ var fs = require('fs');
 app.get("/", (req, res) => {
   try {
     const secrets = JSON.parse(fs.readFileSync("secrets.json", 'utf8'))
-    console.log(secrets);
     token = secrets.token;
-    console.log(token);
   } catch (error) {
     console.error(error);
     console.log("couldn't get token");
     res.send(error);
-    return;
   }
   const header = req.headers;
   if (header["token"] !== token) {
