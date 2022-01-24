@@ -11,8 +11,10 @@ app.get("/", (req, res) => {
     console.log(secrets);
     token = secrets.token;
     console.log(token);
-  } catch {
+  } catch (error) {
+    console.error(error);
     console.log("couldn't get token");
+    res.send(error);
     return;
   }
   const header = req.headers;
