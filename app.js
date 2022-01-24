@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
   if (header["token"] !== token) {
     res.send("wrong token!");
   } else {
+      console.log("sending wol")
     wol("18:C0:4D:97:70:60", (from = "10.100.10.255")).then(() => {
       res.send("wol sent!");
     });
