@@ -1,9 +1,19 @@
 const express = require("express");
 const wol = require("wakeonlan");
-const app = express();
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+
 const port = 3000;
 
-var fs = require('fs');
+var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
+var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+
+
+
+
+var app = express();
 
 app.get("/", (req, res) => {
   try {
@@ -24,6 +34,12 @@ app.get("/", (req, res) => {
     }).catch((error)=>console.log(error));
   }
 });
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`);
+// });
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(3000);
+httpsServer.listen(3001);
