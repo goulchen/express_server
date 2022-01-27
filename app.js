@@ -6,8 +6,8 @@ var https = require('https');
 
 const port = 3000;
 
-var privateKey  = fs.readFileSync('key.pem', 'utf8');
-var certificate = fs.readFileSync('cert.pem', 'utf8');
+var privateKey  = fs.readFileSync(__dirname + '/key.pem', 'utf8');
+var certificate = fs.readFileSync(__dirname + '/cert.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
 
@@ -17,7 +17,7 @@ var app = express();
 
 app.get("/", (req, res) => {
   try {
-    const secrets = JSON.parse(fs.readFileSync("secrets.json", 'utf8'))
+    const secrets = JSON.parse(fs.readFileSync(__dirname + "secrets.json", 'utf8'))
     token = secrets.token;
   } catch (error) {
     console.error(error);
