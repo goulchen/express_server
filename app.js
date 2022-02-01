@@ -22,15 +22,17 @@ app.get("/", (req, res) => {
   } catch (error) {
     console.error(error);
     console.log("couldn't get token");
-    res.send(error);
+    res.status(403).end();
   }
   const header = req.headers;
   if (header["token"] !== token) {
-    res.send("wrong token!");
+    //res.send("wrong token!");
+    res.status(403).end();
+
   } else {
       console.log("sending wol")
     wol("18:C0:4D:97:70:60", (from = "10.100.10.255")).then(() => {
-      res.send("wol sent!");
+      res.send("success");
     }).catch((error)=>console.log(error));
   }
 });
