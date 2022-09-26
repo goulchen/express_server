@@ -9,6 +9,10 @@ const port = 3000;
 var privateKey  = fs.readFileSync(__dirname + '/key.pem', 'utf8');
 var certificate = fs.readFileSync(__dirname + '/cert.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
+
+
+
+
 var app = express();
 
 app.get("/", (req, res) => {
@@ -32,6 +36,9 @@ app.get("/", (req, res) => {
     }).catch((error)=>console.log(error));
   }
 });
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`);
+// });
 
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
