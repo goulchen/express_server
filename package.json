@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
+    "openssl-nodejs": "^1.0.5",
     "wakeonlan": "github:goulchen/wakeonlan"
   }
 }
