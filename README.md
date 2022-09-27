@@ -1,7 +1,7 @@
 # Wake On Lan with expressjs
 
-this project is a small express js server intended to wake up another computer on the network<br/>
-If the computer with the app running is accessible remotely through a forwarded port, it is possible to securely turn on the target computer through the internet<br/>
+this project is a small express js server intended to wake up another computer on the network.<br/>
+If the computer with the app running is accessible remotely through a forwarded port, it is possible to securely turn on the target computer through the internet.<br/>
 ## 1. Activate wakeonlan on your target computer
 First of all, make sure that you can wake your target computer on lan. This should be activated through an option on your bios.<br/>
 
