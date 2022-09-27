@@ -1,11 +1,11 @@
 # Wake On Lan with expressjs
 
-this project is a small express js server intended to wake up another computer on the network.<br/>
+this project is a small express js server intended to wake up another computer on the network, e.g. a raspberry.<br/>
 If the app is accessible remotely through a forwarded port, it is possible to securely turn on the target computer through the internet.<br/>
 ## 1. Activate wakeonlan functionality on your target computer
-First of all, make sure that you can wake your target computer on lan. This should be activated through an option on your bios.<br/>
+First of all, make sure that you can wake your target computer on lan. This should be an option on your bios.<br/>
 
-## 2. Install the express js on your local computer 
+## 2. Install the express js app on your local computer 
 ### 2.1 Install Node
 check if node is installed on your computer :
  ```bash
@@ -19,20 +19,21 @@ git clone https://github.com/goulchen/wake_on_lan_expressjs.git wakeonlan_expres
 cd wakeonlan_expressjs
 npm install
 ```
+### 2.5 setup duckdns
+If you want to access your local network remotely, you need to set up duckdns. It is a free dynamic DNS hosted on AWS.<br />
+first set up your account at https://www.duckdns.org/ and generate your duckdns domain<br />
+then you need it install it on your computer in order for the domain to always point to your current ip : https://www.duckdns.org/install.jsp
+
 ### 2.3 Generate a SSL certificate with openssl
 In order to allow secure communication over the internet, you need to create a SSL certificate.<br />
 When you create your certificate, you will be prompted to input information about the origin of the certificate.<br />
-You can let everything blank except for local name. It should match the DNS of the target server (www.example.com, localhost...), set it right otherwise curl will throw a certificate error.
+You can let everything blank except for local name. It should match the DNS of the target server (www.yourDuckdnsDomain.duckdns.org, localhost...), set it right otherwise curl will throw a certificate error.
 
 ```bash
 openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
 ```
 ### 2.4 forward a port to the internet
 Check you rooter admin panel for port forwarding, for example forward port 3000 to 3000. <br /> It means that your port 3000 will be opened to the internet.
-### 2.5 setup duckdns
-If you want to access your local network remotely, you need to set up duckdns. It is a free dynamic DNS hosted on AWS.<br />
-first set up your account at https://www.duckdns.org/ <br />
-then you need it install it on your computer : https://www.duckdns.org/install.jsp
 ### 2.6 Start the app
 once you have generated your certificate, installed duckdns and enabled port forwarding, you can start your express server :
 
@@ -51,10 +52,11 @@ parameters :<br />
 <b>--token</b> : an authentification token that will be asked for incoming requests<br />
 
 ### 3. Send request to your server
-Now you can request your server with the parameters cacert and the certificate file cert.pem you created to specify that you trust this selfsigned certificate :<br />
+Now you can remotely request your server.<br />
+You need to copy the cert file on your remote computer in order to talk to your server :
 
 
 ```bash
-curl --cacert ./cert.pem https://localhost:3000 -H "token: 959572f3-2250-4663-95f1-5241e1d9ba56"
+curl --cacert ./cert.pem https://myduckdnsDomain.duckdns.org:3000 -H "token: 959572f3-2250-4663-95f1-5241e1d9ba56"
 ```
 
