@@ -48,9 +48,9 @@ parameters :<br />
 
 <b>--from </b>:  Source address for socket. If not specified, packets will be sent out to the broadcast address of all IPv4 interfaces.<br />
 
-<b>--port</b> : the port for the express server, should be forwarded to an open port<br />
+<b>--port</b> : the port for the express server, should be forwarded to an open port.<br />
 
-<b>--token</b> : an authentification token that will be asked for incoming requests<br />
+<b>--token</b> : an authentification token that will be asked for incoming requests.<br />
 
 ### 3. Send request to your server from the remote computer
 Now you can remotely call your app.<br />
