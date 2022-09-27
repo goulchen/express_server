@@ -4,7 +4,7 @@ var https = require('https');
 const wol = require("./wakeonlan");
 
 const target = process.argv.target || "18:C0:4D:97:70:60"
-const from = process.argv.from || "10.100.10.255"
+const range = process.argv.from || "10.100.10.255"
 const port = process.argv.port || 3000;
 const token = process.argv.token || "959572f3-2250-4663-95f1-5241e1d9ba56";
 
@@ -16,7 +16,6 @@ var app = express();
 console.log('sarting listening')
 
 app.get("/", (req, res) => {
-    console.log("coucou")
     try {
         const header = req.headers;
         if (header["token"] !== token) {
@@ -24,8 +23,7 @@ app.get("/", (req, res) => {
             res.status(403).end();
         } else {
             console.log("waking up through lan")
-            wol(target, (from = from)).then(() => {
-                // res.sendFile('index.html');
+            wol(target, (from = range)).then(() => {
                 res.status(200).end();
             }).catch((error) => console.log(error));
         }
