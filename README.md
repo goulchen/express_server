@@ -50,7 +50,7 @@ parameters :<br />
 
 <b>--token</b> : an authentification token that will be asked for incoming requests<br />
 
-### 3 Start the app
+### 3. Send request to your server
 Now you can request your server with the parameters cacert and the certificate file cert.pem you created to specify that you trust this selfsigned certificate :<br />
 
 
