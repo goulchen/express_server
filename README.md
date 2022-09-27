@@ -52,8 +52,8 @@ parameters :<br />
 <b>--token</b> : an authentification token that will be asked for incoming requests<br />
 
 ### 3. Send request to your server
-Now you can remotely request your server.<br />
-You need to copy the cert file on your remote computer in order to talk to your server :
+Now you can remotely call your app.<br />
+You just need to copy the cert.pem file on your remote computer and add it to the curl parameters in order to successfully establish a SSL connection :
 
 
 ```bash
