@@ -1,7 +1,7 @@
 # Wake On Lan with expressjs
 
 this project is an express app intended to wake up another computer on the network.<br/>
-It is possible to access the app remotely through a forwarded port.<br/>
+It is possible to access the app remotely through a forwarded port and a dynamic DNS service like duckdns.<br/>
 ## 1. Activate wakeonlan functionality on your target computer
 First of all, make sure that you can wake your target computer on lan. This should be an option on your bios.<br/>
 
