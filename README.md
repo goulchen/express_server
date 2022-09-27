@@ -1,14 +1,28 @@
-# wake_on_lan_expressjs
+# Wake On Lan with expressjs
 
-A small express js server hosting an API to wake up a computer in the nework 
+this project is a small express js server intended to wake up another computer on the network<br/>
+If the computer with the app running is accessible remotely through a forwarded port, it is possible to securely turn on the target computer through the internet<br/>
+## 1. Activate wakeonlan on your target computer
+First of all, make sure that you can wake your target computer on lan. This should be activated through an option on your bios.<br/>
 
-this project is intended for remotely waking up a server from another computer on the same network with an open port to the internet
-## create a certificate and key with openssl
+## 2 install the express js on your local computer 
+### 2.1 install dependencies
+#### Node
+https://nodejs.org/en/download/
+
+### 2.2 git clone this repo and install node modules
+```bash
+git clone https://github.com/goulchen/wake_on_lan_expressjs.git wakeonlan_expressjs
+cd wakeonlan_expressjs
+npm install
+```
+### 2.3 create a certificate and key with openssl
 first install the node modules 
 
 ```bash
-npm install
+
 ```
+
 
 Then you need to create a certificate to allow secure communication over the internet.<br />
 When you create your certificate, you will be prompted to input information about the origin of the certificate.<br />
