@@ -6,7 +6,7 @@ This app use the wakeonlan library created by Taka Kojima : https://github.com/g
 ## 1. Activate wakeonlan functionality on your target computer
 First of all, make sure that you can wake your target computer on lan. This should be an option on your bios.<br/>
 
-## 2. Install the express js app on your local computer 
+## 2. Install the express js app on the other local computer 
 ### 2.1 Install Node
 check if node is installed on your computer :
  ```bash
@@ -52,7 +52,7 @@ parameters :<br />
 
 <b>--token</b> : an authentification token that will be asked for incoming requests<br />
 
-### 3. Send request to your server
+### 3. Send request to your server from the remote computer
 Now you can remotely call your app.<br />
 You just need to copy the cert.pem file on your remote computer and add it to the curl parameters in order to successfully establish a SSL connection :
 
