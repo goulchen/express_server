@@ -62,15 +62,13 @@ let sendToAll = (mac, opts) => {
     let promises = [];
     let ifaces = os.networkInterfaces();
     for (let p in ifaces) {
-        if (p === "wlan0") {
-            ifaces[p].forEach((iface) => {
-                if (!net.isIPv4(iface.address)) return;
-                let ifaceOpts = Object.assign({}, opts);
-                ifaceOpts.from = iface.address;
-                ifaceOpts.address = getBroadcastAddr(iface.address, iface.netmask);
-                promises.push(send(mac, ifaceOpts));
-            });
-        }
+        ifaces[p].forEach((iface) => {
+            if (!net.isIPv4(iface.address)) return;
+            let ifaceOpts = Object.assign({}, opts);
+            ifaceOpts.from = iface.address;
+            ifaceOpts.address = getBroadcastAddr(iface.address, iface.netmask);
+            promises.push(send(mac, ifaceOpts));
+        });
     }
     return Promise.all(promises);
 };

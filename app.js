@@ -2,11 +2,12 @@ const express = require("express");
 var fs = require('fs');
 var https = require('https');
 const wol = require("./wakeonlan");
+var argv = require('minimist')(process.argv.slice(2));
 
-const target = process.argv.target || "18:C0:4D:97:70:60"
-const range = process.argv.from || "10.100.10.255"
-const port = process.argv.port || 3000;
-const token = process.argv.token || "959572f3-2250-4663-95f1-5241e1d9ba56";
+const target = argv.target || "18:C0:4D:97:70:60"
+const range = argv.from || "100.100.100.255"
+const port = argv.port || 3000;
+const token = argv.token || "959572f3-2250-4663-95f1-5241e1d9ba56";
 
 var privateKey = fs.readFileSync(__dirname + '/key.pem', 'utf8');
 var certificate = fs.readFileSync(__dirname + '/cert.pem', 'utf8');
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
         } else {
             console.log("waking up through lan")
             wol(target, (from = range)).then(() => {
+                console.log("WOL command sent")
                 res.status(200).end();
             }).catch((error) => console.log(error));
         }
@@ -34,8 +36,14 @@ app.get("/", (req, res) => {
 });
 
 var httpsServer = https.createServer(credentials, app);
-httpsServer.listen(port);
+var openSocket = null;
+httpsServer.on('connection', socket => { openSocket = socket; });
 
-// var http = require('http');
-// var httpServer = http.createServer(app);
-// httpServer.listen(port);
+function exitHandler() {
+    console.log("\nThe server is closed... Exiting")
+    httpsServer.close();
+    openSocket && openSocket.destroy();
+}
+process.on('SIGINT', exitHandler);
+
+httpsServer.listen(port);
