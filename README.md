@@ -6,8 +6,7 @@ If the computer with the app running is accessible remotely through a forwarded 
 First of all, make sure that you can wake your target computer on lan. This should be activated through an option on your bios.<br/>
 
 ## 2 install the express js on your local computer 
-### 2.1 install dependencies
-#### Node
+### 2.1 install Node
 https://nodejs.org/en/download/
 
 ### 2.2 git clone this repo and install node modules
@@ -16,12 +15,7 @@ git clone https://github.com/goulchen/wake_on_lan_expressjs.git wakeonlan_expres
 cd wakeonlan_expressjs
 npm install
 ```
-### 2.3 create a certificate and key with openssl
-first install the node modules 
-
-```bash
-
-```
+### 2.3 generate a certificate and key with openssl
 
 
 Then you need to create a certificate to allow secure communication over the internet.<br />
