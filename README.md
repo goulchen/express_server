@@ -10,8 +10,8 @@ first install the node modules
 npm install
 ```
 
-then you need to create a certificate to allow secure communication over the internet.
-when you create your certificate, local name should be the name of the target server (www.example.com, localhost...), otherwise curl will throw an error
+Then you need to create a certificate to allow secure communication over the internet.
+When you create your certificate, you will be prompted to input information about the origin of the certificate. You can let everything blank except for local name that should match the DNS of the target server (www.example.com, localhost...), set it right otherwise curl will throw a certificate error
 
 ```bash
 openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
