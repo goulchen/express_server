@@ -26,13 +26,13 @@ node app.js --target 18:C0:4D:97:70:60 --from 10.100.10.255 --port 3000 --token 
 
 parameters :<br />
 
-target : the mac address of the target machine on the local network<br />
+<b>--target</b> : the mac address of the target machine on the local network<br />
 
-from :  Source address for socket. If not specified, packets will be sent out to the broadcast address of all IPv4 interfaces.<br />
+<b>--from </b>:  Source address for socket. If not specified, packets will be sent out to the broadcast address of all IPv4 interfaces.<br />
 
-port : the port for the express server, should be forwarded to an open port<br />
+<b>--port</b> : the port for the express server, should be forwarded to an open port<br />
 
-token : an authentification token that will be asked for incoming requests<br />
+<b>--token</b> : an authentification token that will be asked for incoming requests<br />
 
 
 now you can request your server with the parameters cacert to specify that you trust this selfsigned certificate :<br />
