@@ -7,6 +7,11 @@ First of all, make sure that you can wake your target computer on lan. This shou
 
 ## 2. install the express js on your local computer 
 ### 2.1 install Node
+check if node is installed on your computer :
+ ```bash
+node --version
+```
+if you get an error, you need to install Node :<br/>
 https://nodejs.org/en/download/
 
 ### 2.2 git clone this repo and install node modules
